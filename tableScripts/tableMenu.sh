@@ -9,20 +9,20 @@
 	echo -e "\t\t5)select From Table\n" 
 	echo -e "\t\t6)Delete From Table\n" 
 	echo -e "\t\t7)Update From Table\n" 
+	echo -e "\t\t8)Exist\n" 
 	echo -e "\t\tEnter Your Choice : \c"
 	read char
 	
 	case $char in 
 		1) $HOME/DBMS/tableScripts/createTable.sh;;
-		2) echo -e "\t\tYou select List Tables\n";;
-		3) echo -e "\t\tYou select Drop Table\n";;
+		2) $HOME/DBMS/tableScripts/listTables.sh;;
+		3) $HOME/DBMS/tableScripts/dropTable.sh;;
 		4) echo -e "\t\tYou select Insert Table\n";;
 		5) echo -e "\t\tYou select select From Table\n";;
 		6) echo -e "\t\tYou select Delete From Table\n";;
 		7) echo -e "\t\tYou select Update From Table\n" ;;
 		8) exit ;;
-		*) echo -e "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\tWrorng Choice \U0001f635 \n";mainMenu;
-		echo -e "\t\t\t==============================="
+		*) echo -e "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\tWrorng Choice \U0001f635 \n";$HOME/DBMS/tableScripts/tableMenu.sh;;
 		esac
 
 
