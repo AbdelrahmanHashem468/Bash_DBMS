@@ -1,7 +1,4 @@
 #! /bin/bash
-
-
-
 	echo -e "\n\t\t\t\t==================="
 	echo -e "\t\t\t\t|    Tables Menu    |"
 	echo -e "\t\t\t\t===================\n\n"
@@ -16,7 +13,7 @@
 	read char
 	
 	case $char in 
-		1) echo -e "\t\tYou select Create Table\n";;
+		1) $HOME/DBMS/tableScripts/createTable.sh;;
 		2) echo -e "\t\tYou select List Tables\n";;
 		3) echo -e "\t\tYou select Drop Table\n";;
 		4) echo -e "\t\tYou select Insert Table\n";;

@@ -1,7 +1,7 @@
 #! /bin/bash
 
 echo -e "\n\t\t\t================================\n"
-echo -e "\t\t\t Welcome To Hossam&Hashem_System\n"
+echo -e "\t\t\t Welcome To H&H_System\n"
 echo -e "\t\t\t================================"
 
 
