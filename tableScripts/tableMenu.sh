@@ -1,6 +1,6 @@
 #! /bin/bash
 	echo -e "\n\t\t\t\t==================="
-	echo -e "\t\t\t\t|    Tables Menu    |"
+	echo -e "\t\t\t\t|    Tables Menu   |"
 	echo -e "\t\t\t\t===================\n\n"
 	echo -e "\t\t1)Create Table\n"
 	echo -e "\t\t2)List Tables\n"
