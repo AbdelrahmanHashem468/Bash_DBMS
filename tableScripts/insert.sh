@@ -16,6 +16,5 @@ pKey=""
 
 colsNum=`awk 'END{print NR}' .$tableName`
 for ((i = 2; i <=$colsNum; i++)); do
-
-colName=$( awk 'BEGIN{FS="|"}{ if(NR=='$i') print $1}' .$tableName)
+    colName=$( awk 'BEGIN{FS="|"}{ if(NR=='$i') print $1}' .$tableName)
 done   
