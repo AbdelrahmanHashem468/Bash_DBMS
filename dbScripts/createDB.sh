@@ -5,7 +5,7 @@ echo -e "\n\t\t\tPlease Enter Datebase Name: \c"
 read dbName
 
 
-if [[ $dbName == *['!'@#\$%^\&*()_+]* ]]; then
+if [[ $dbName == *['!'@#\$%^\&*()_+]* ]] || [[ $dbName == [0-9]* ]] ;then
 	echo -e "\n\n\n\n\n\n\n\n\n\n\n\n"
 	echo -e "\n\t\t==================================================="
 	echo -e "\n\t\t\tIt Contains Special Charachters \U0001f620 \n"
