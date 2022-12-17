@@ -19,7 +19,7 @@ elif [[ -d $HOME/DBMS/DBS/"$dbName" ]]; then
 	echo -e "\t\t\t================================"
 	echo -e "\n\t\t\t\tAlready Exict \U0001f625 \n"
 	echo -e "\t\t\t================================"	
-	$HOME/DBMS/dbScripts/createDB.sh
+	$HOME/DBMS/dbScripts/createDB.sh	
 else
 	
 	echo -e "\n\n\n\n\n\n\n\n\n\n\n\n"	
