@@ -1,6 +1,6 @@
 #! /bin/bash
 	echo -e "\n\t\t\t\t==================="
-	echo -e "\t\t\t\t|    Tables Menu   |"
+	echo -e "\t\t\t\t|    Tables Menu    |"
 	echo -e "\t\t\t\t===================\n\n"
 	echo -e "\t\t1)Create Table\n"
 	echo -e "\t\t2)List Tables\n"
@@ -17,8 +17,8 @@
 		1) $HOME/DBMS/tableScripts/createTable.sh;;
 		2) $HOME/DBMS/tableScripts/listTables.sh;;
 		3) $HOME/DBMS/tableScripts/dropTable.sh;;
-		4) echo -e "\t\tYou select Insert Table\n";;
-		5) echo -e "\t\tYou select select From Table\n";;
+		4) $HOME/DBMS/tableScripts/insert.sh;;
+		5) $HOME/DBMS/tableScripts/selectMenu.sh;;
 		6) $HOME/DBMS/tableScripts/deleteFromTable.sh;;
 		7) echo -e "\t\tYou select Update From Table\n" ;;
 		8) exit ;;
