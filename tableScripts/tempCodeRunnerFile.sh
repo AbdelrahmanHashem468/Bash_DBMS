@@ -1,1 +1,1 @@
-selectAll
+$HOME/DBMS/tableScripts/selectCol.sh

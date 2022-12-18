@@ -11,3 +11,5 @@ if ! [[ -f $tableName ]]; then
     awk 'BEGIN{FS=":"; ORS = "\n-------------------\n"}{print "\t\t\n", $tableName}' $tableName
     
 fi        
+
+$HOME/DBMS/tableScripts/selectMenu.sh
