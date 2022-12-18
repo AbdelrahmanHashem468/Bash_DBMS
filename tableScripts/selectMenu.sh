@@ -13,7 +13,7 @@
   echo -e "\t\t Enter Choice: \c"
   read ch
   case $ch in
-    1) echo -e "\t\t1) Selected all";;
+    1) $HOME/DBMS/tableScripts/selectAll.sh;;
     2) echo -e "\t\t1) Selected col";;
     3) echo -e "\t\t1) Selected condition";;
     4) echo -e "\t\t1) aggragte function";;

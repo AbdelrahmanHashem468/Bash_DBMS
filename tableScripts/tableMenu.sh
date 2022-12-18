@@ -18,7 +18,7 @@
 		2) $HOME/DBMS/tableScripts/listTables.sh;;
 		3) $HOME/DBMS/tableScripts/dropTable.sh;;
 		4) $HOME/DBMS/tableScripts/insert.sh;;
-		5) echo -e "\t\tYou select select From Table\n";;
+		5) $HOME/DBMS/tableScripts/selectMenu.sh;;
 		6) $HOME/DBMS/tableScripts/deleteFromTable.sh;;
 		7) echo -e "\t\tYou select Update From Table\n" ;;
 		8) exit ;;
