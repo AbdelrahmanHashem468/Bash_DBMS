@@ -1,5 +1,5 @@
 #!/bin/bash 
-if [[ $1 == *"/"* ]]; then
+if [[ $1 == *"/"* ]] || [[ $1 == "" ]]; then
     return 0
 fi
 if [[ $1 == *"*"* ]]; then

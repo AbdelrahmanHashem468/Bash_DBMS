@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -x
 
 echo -e  "\t\tEnter The Table Name : \c"
 read tableName
@@ -49,7 +49,7 @@ else
                 }
             ' $tableName 2>> /dev/null)
         sed -i ''$NR'd' $tableName 2>> /dev/null
-        echo "\t\tRow Deleted Successfully"
+        echo -e "\t\tRow Deleted Successfully"
         $HOME/DBMS/tableScripts/tableMenu.sh
     fi
 fi
