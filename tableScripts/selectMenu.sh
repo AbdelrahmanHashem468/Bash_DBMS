@@ -17,8 +17,8 @@
     2) echo -e "\t\t1) Selected col";;
     3) echo -e "\t\t1) Selected condition";;
     4) echo -e "\t\t1) aggragte function";;
-    5) $HOME/DBMS/tableScripts/tableMenu.sh5;;
+    5) $HOME/DBMS/tableScripts/tableMenu.sh;;
     6) $HOME/DBMS/main.sh;;
     7) exit ;;
-    *) echo " Wrong Choice ";;
+    *) echo -e "\n\t\t\t\t   Wrong Choice \n";$HOME/DBMS/tableScripts/selectMenu.sh;
   esac

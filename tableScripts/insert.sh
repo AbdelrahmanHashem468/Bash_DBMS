@@ -27,6 +27,16 @@ for (( i = 2; i <= $colsNum; i++ )); do
     echo -e "\n\t\t\tName of Col ($colName) Type ($colType) = \c"
     read data
 
+
+
+   
+
+
+    while [[ true ]]; do
+    
+ 
+            
+    
     if [[ $colType == "int" ]]; then
         while ! [[ $data =~ ^[0-9]*$ ]]; do
 
@@ -37,14 +47,6 @@ for (( i = 2; i <= $colsNum; i++ )); do
         done
     fi
 
-   
-
-
-    while [[ true ]]; do
-    
- 
-            
-    
     if [[ $colKey == "pk" && -z "$data" ]]; then
         echo -e "\n\t\t\t${RED}You have to write PK${NC}\n"
         echo -e "\n\t\t\t$colName ($colType) = \c"

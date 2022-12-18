@@ -8,6 +8,6 @@ if ! [[ -f $tableName ]]; then
     echo -e "\n\t\t\t\t The Table don't Exist Choose another Name "
     $HOME/DBMS/tableScripts/selectAll.sh
     else
-    `cat $tableName`
-    read x
+    awk 'BEGIN{FS=":"; ORS = "\n-------------------\n"}{print "\t\t\n", $tableName}' $tableName
+    
 fi        
