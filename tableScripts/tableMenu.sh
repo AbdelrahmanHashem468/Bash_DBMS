@@ -19,7 +19,7 @@
 		3) $HOME/DBMS/tableScripts/dropTable.sh;;
 		4) $HOME/DBMS/tableScripts/insert.sh;;
 		5) echo -e "\t\tYou select select From Table\n";;
-		6) echo -e "\t\tYou select Delete From Table\n";;
+		6) $HOME/DBMS/tableScripts/deleteFromTable.sh;;
 		7) echo -e "\t\tYou select Update From Table\n" ;;
 		8) exit ;;
 		*) echo -e "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\tWrorng Choice \U0001f635 \n";$HOME/DBMS/tableScripts/tableMenu.sh;;
