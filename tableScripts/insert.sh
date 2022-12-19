@@ -1,4 +1,4 @@
-#! /bin/bash 
+#! /bin/bash -x
 RED='\033[0;31m'
 NC='\033[0m'
 echo -e "\n\t\t\tEnter Table Name: \c"
@@ -17,45 +17,61 @@ pKey=""
 colsNum=`awk 'END{print NR}' config_$tableName`
 echo -e "\n\t\t\tEnter column name : \c"
 
-record=""
 for (( i = 2; i <= $colsNum; i++ )); do
 
     colName=$(awk 'BEGIN{FS=":"}{ if(NR=='$i') print $1}' config_$tableName)
     colType=$(awk 'BEGIN{FS=":"}{if(NR=='$i') print $2}' config_$tableName)
     colKey=$(awk 'BEGIN{FS=":"}{if(NR=='$i') print $3}' config_$tableName)
 
+    colLineNumber=`cut -d: -f3 config_$tableName | grep -n -w "^pk$" | cut -d: -f1`
+    colLineNumber=$(($colLineNumber-1))
+
+
     echo -e "\n\t\t\tName of Col ($colName) Type ($colType) = \c"
     read data
 
-
-
-   
-
-
-    while [[ true ]]; do
     
- 
-            
+    while [[ true ]]; do
+
+
     
     if [[ $colType == "int" ]]; then
         while ! [[ $data =~ ^[0-9]*$ ]]; do
 
             echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
             echo -e "\n\t\t\t$colName ($colType) = \c"
+            echo " this is clnumber "$colLineNumber
+            echo "this is check number "$checkpk
             read data
 
         done
     fi
 
+
+    if [[ $colKey == "pk" ]]; then
+        while [ true ]; do
+        checkpk=`cut -d: -f"$colLineNumber" $tableName | grep -c -w "$data"`  
+
+        if [[ $checkpk != 0 ]]; then
+            echo -e "\n\t\t\t${RED}Duplcated PK${NC}\n"
+            echo -e "\n\t\t\t$colName ($colType) = \c"
+            read data
+        else
+            break
+         fi
+
+        done
+    fi
+
+
     if [[ $colKey == "pk" && -z "$data" ]]; then
-        echo -e "\n\t\t\t${RED}You have to write PK${NC}\n"
-        echo -e "\n\t\t\t$colName ($colType) = \c"
-        read data
+    echo -e "\n\t\t\t${RED}You have to write PK${NC}\n"
+    echo -e "\n\t\t\t$colName ($colType) = \c"
+    read data
         else
         break
         
     fi
-
 
 
     done
