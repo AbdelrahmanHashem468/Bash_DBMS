@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -x
 
 echo -e  "\t\tEnter The Table Name : \c"
 read tableName
@@ -6,7 +6,6 @@ if ! [[ -f $tableName ]];then
     echo -e "\t\tThe Table Not Exist "
     $HOME/DBMS/tableScripts/tableMenu.sh 
 fi
-
 echo -e  "\t\tEnter The column Name : \c"
 read coluName
 numField=$(
@@ -28,7 +27,6 @@ then
 else
     echo -e  "\t\tEnter The Value : \c"
     read -r  value
-    
     res=$(
         awk '
             BEGIN{FS=":"}
@@ -36,6 +34,7 @@ else
                 if ( $'$numField' == "'$value'") print $'$numField'
             }
         ' $tableName 2>> /dev/null)
+        echo $flag
     if [[ $res == "" ]]
         then
         echo -e "\t\tThe Value Not Exist "
@@ -48,8 +47,22 @@ else
                     if ($'$numField'=="'$value'") print NR
                 }
             ' $tableName 2>> /dev/null)
-        sed -i ''$NR'd' $tableName 2>> /dev/null
-        echo "\t\tRow Deleted Successfully"
+        NR=${NR//$'\n'/" "}
+        field=$(echo $NR | awk -F" " '{print NF}')
+        if [[ $field != 1 ]];then
+            NR=$(echo "$NR" | rev |cat)
+            count=1
+            num=$(echo "$NR" | cut -d" " -f1 | rev ) 
+            while [[ $num != "" ]]
+            do
+                sed -i ''$num'd' $tableName 2>> /dev/null
+                echo -e "\t\tRow '$num' Deleted Successfully"
+                ((count++))
+                num=$(echo "$NR" |cut -d" " '-f'$count''|rev )
+            done
+        else
+            sed -i ''$NR'd' $tableName 2>> /dev/null
+        fi
         $HOME/DBMS/tableScripts/tableMenu.sh
     fi
 fi
