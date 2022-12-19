@@ -1,1 +1,0 @@
-    pk_used=$(cut -d ':' -f1 "$tableName" | awk '{if(NR != 1) print $0}' | grep -x -e "$REPLY")
