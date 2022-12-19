@@ -27,7 +27,7 @@ else
         echo -e "\t\tThe Column Not Exist "
         $HOME/DBMS/tableScripts/selectCol.sh
     else
-        awk 'BEGIN{FS=":"; ORS = "\n-------------------\n"}{print $'$colNum'}' $tableName
+    awk 'BEGIN{FS=":"; ORS = "\n-------------------\n"}{print NR " | " $'$colNum'}' $tableName
 
 
         echo -e "\n\t\t\t\t1) to show another column \n"

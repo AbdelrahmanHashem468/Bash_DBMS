@@ -1,0 +1,4 @@
+
+name:str:
+salart:int:
+id:int:pk
