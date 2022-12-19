@@ -1,6 +1,6 @@
-#! /bin/bash -x
+#! /bin/bash
 
-echo -e  "\t\tEnter The Table Name : \c"
+echo -e  "\t\tEnter The Table Name you wanna delete from : \c"
 read tableName
 if ! [[ -f $tableName ]];then
     echo -e "\t\tThe Table Not Exist "
