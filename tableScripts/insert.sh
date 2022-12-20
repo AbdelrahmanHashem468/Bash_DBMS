@@ -58,7 +58,7 @@ for (( i = 2; i <= $colsNum; i++ )); do
             read data
         else
             break
-         fi
+        fi
 
         done
     fi

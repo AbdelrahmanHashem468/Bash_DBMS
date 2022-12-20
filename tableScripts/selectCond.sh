@@ -1,6 +1,6 @@
 #! /bin/bash
 
-echo -e  "\t\tEnter The Table Name you wanna delete from : \c"
+echo -e  "\t\tEnter The Table Name you wanna Select from : \c"
 read tableName
 if ! [[ -f $tableName ]];then
     echo -e "\t\tThe Table Not Exist "
@@ -62,7 +62,7 @@ else
             done
         else
             sed -n ''$NR'p' $tableName 2>> /dev/null
-            echo -e "Row '$num' Selected Successfully"
+            echo -e "Row '$NR' Selected Successfully"
         fi
         $HOME/DBMS/tableScripts/tableMenu.sh
     fi

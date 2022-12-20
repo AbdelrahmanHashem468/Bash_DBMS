@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash 
 
 echo -e  "\t\tEnter The Table Name you wanna delete from : \c"
 read tableName

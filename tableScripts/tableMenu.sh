@@ -20,7 +20,7 @@
 		4) $HOME/DBMS/tableScripts/insert.sh;;
 		5) $HOME/DBMS/tableScripts/selectMenu.sh;;
 		6) $HOME/DBMS/tableScripts/deleteFromTable.sh;;
-		7) echo -e "\t\tYou select Update From Table\n" ;;
+		7) $HOME/DBMS/tableScripts/updateTable.sh;;
 		8) exit ;;
 		*) echo -e "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\tWrorng Choice \U0001f635 \n";$HOME/DBMS/tableScripts/tableMenu.sh;;
 		esac
