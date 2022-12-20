@@ -1,4 +1,4 @@
-#! /bin/bash 
+#! /bin/bash -x
 RED='\033[0;31m'
 NC='\033[0m'
 echo -e "\n\t\t\tEnter Table Name: \c"

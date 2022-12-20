@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -x
 
 echo -e  "\t\tEnter The Table Name you wanna Update : \c"
 read tableName
@@ -76,7 +76,10 @@ else
                     if [[ $checkpk != 0 ]]; then
                         echo -e "\n\t\t\t${RED}Duplcated PK${NC}\n"
                         $HOME/DBMS/tableScripts/tableMenu.sh
+                        else
+                        break;
                     fi
+
                     done
                 fi
             done
