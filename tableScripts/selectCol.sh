@@ -1,12 +1,15 @@
 #! /bin/bash
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
 
-  echo -e "\n\t\t\t\t Enter Table Name: \c"
+  echo -e "\n\t\t\t\t=> Enter Table Name: \c"
   read tableName
-  echo -e "\n\t\t\t\t Enter Column Name: \c"
+  echo -e "\n\t\t\t\t=> Enter Column Name: \c"
   read coluName
 
 if ! [[ -f $tableName ]]; then
-    echo -e "\n\t\t\t\t The Table don't Exist Choose another Name "
+    echo -e "\n\t\t\t\t The Table ${RED}Don't Exist${NC} Choose another Name \n"
     $HOME/DBMS/tableScripts/selectCol.sh
 else
     colNum=$(
@@ -24,7 +27,7 @@ else
 
     if [[ $colNum == "" ]]
     then
-        echo -e "\t\tThe Column Not Exist "
+        echo -e "\n\t\t\tThe Column ${RED}Does't Exist ${NC} "
         $HOME/DBMS/tableScripts/selectCol.sh
     else
     awk 'BEGIN{FS=":"; ORS = "\n-------------------\n"}{print NR " | " $'$colNum'}' $tableName

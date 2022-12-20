@@ -1,4 +1,5 @@
 
-id:int:pk
 name:str:
 salary:int:
+address:str:
+id:int:pk

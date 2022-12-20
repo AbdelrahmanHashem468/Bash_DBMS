@@ -1,6 +1,0 @@
-
-id:int:
-phone:int:
-name:str:pk
-salary:int:
-age:int:

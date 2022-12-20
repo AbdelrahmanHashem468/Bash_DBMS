@@ -1,8 +1,18 @@
-#! /bin/bash -x
+#! /bin/bash 
 RED='\033[0;31m'
 NC='\033[0m'
 echo -e "\n\t\t\tEnter Table Name: \c"
 read tableName
+source $HOME/DBMS/checkSyntax.sh $tableName
+if [[ $? == 0 ]]; then
+	
+	echo -e "\n\n\n\n\n\n\n\n\n\n\n\n"
+	echo -e "\n\t\t==================================================="
+	echo -e "\n\t\t\tIt Contains Special Charachters \U0001f620 \n"
+	echo -e "\t\t==================================================="
+	$HOME/DBMS/tableScripts/createTable.sh
+fi
+
 if ! [[ -f $tableName ]]; then
     echo -e "\n\t\t\t====================================\n"
     echo -e "\t\t\tTable $tableName isn't Exist, Try again \U0001f625"
@@ -40,8 +50,6 @@ for (( i = 2; i <= $colsNum; i++ )); do
 
             echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
             echo -e "\n\t\t\t$colName ($colType) = \c"
-            echo " this is clnumber "$colLineNumber
-            echo "this is check number "$checkpk
             read data
 
         done
