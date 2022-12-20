@@ -78,11 +78,15 @@ else
                     checkpk=`cut -d: -f"$colLineNumber" $tableName | grep -c -w "$setValue"`  
 
                     if [[ $checkpk != 0 ]]; then
-                        echo -e "\n\n\t\t\t\t\t${RED}Duplcated PK${NC}\n"
-                        echo -e  "\n\t\t\t=> Enter The Value : \c"
-                        read setValue
+                        echo -e "\n\t\t\t${RED}Duplcated PK${NC}\n"
+                        $HOME/DBMS/tableScripts/tableMenu.sh
+<<<<<<< HEAD
+                    else
+                    break;
+=======
                         else
                         break;
+>>>>>>> 2792ef9a06dd6cf09ea91d6a3d08dbfc0fb7faa1
                     fi
 
                     done
