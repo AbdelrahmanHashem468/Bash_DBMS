@@ -12,7 +12,7 @@ if ! [[ -f $tableName ]]; then
     echo -e "\n\t\t\t\tThe Table ${RED}Does't Exist${NC} Choose another Name \n"
     $HOME/DBMS/tableScripts/selectAll.sh
     else
-    awk 'BEGIN{FS=":"; ORS = "\n-------------------\n"}{print "\t\t\n" NR " | ", $tableName}' $tableName
+    awk 'BEGIN{FS=":"; ORS = "\n---------------------------\n"}{print "\t\t\n" NR " | ", $tableName}' $tableName
     
 fi        
 

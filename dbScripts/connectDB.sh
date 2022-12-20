@@ -5,6 +5,16 @@ NC='\033[0m'
 
 echo -e "\n\t\t\t=> Enter Datebase Name to Connect: \c \n"
 read dName
+source $HOME/DBMS/checkSyntax.sh $dName
+
+if [[ $? == 0 ]]; then
+	
+	echo -e "\n\n\n\n\n\n\n\n\n\n\n\n"
+	echo -e "\n\t\t==================================================="
+	echo -e "\n\t\t\t\t${RED}Invalid Input${NC} \U0001f620 \n"
+	echo -e "\t\t==================================================="
+	$HOME/DBMS/main.sh
+fi
 
 
 cd $HOME/DBMS/DBS/"$dName" 2>> /dev/null

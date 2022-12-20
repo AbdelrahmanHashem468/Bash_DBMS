@@ -27,7 +27,7 @@ else
 
     if [[ $colNum == "" ]]
     then
-        echo -e "\n\t\t\tThe Column ${RED}Does't Exist ${NC} "
+        echo -e "\n\t\t\t\tThe Column ${RED}Does't Exist ${NC} "
         $HOME/DBMS/tableScripts/selectCol.sh
     else
     awk 'BEGIN{FS=":"; ORS = "\n-------------------\n"}{print NR " | " $'$colNum'}' $tableName

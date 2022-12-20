@@ -40,21 +40,42 @@ for (( i = 2; i <= $colsNum; i++ )); do
     echo -e "\n\t\t\tName of Col ($colName) Type ($colType) = \c"
     read data
 
+
+    while [[ true ]]; do
+        if [[ $colType == "int" ]]; then
+            while ! [[ $data =~ ^[0-9]*$ ]]; do
+                
+                echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
+                echo -e "\n\t\t\t$colName ($colType) = \c"
+                read data
+            done
+        fi
+        break
+    done
     
     while [[ true ]]; do
 
 
-    
-    if [[ $colType == "int" ]]; then
-        while ! [[ $data =~ ^[0-9]*$ ]]; do
-
-            echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
+    if [[ $colKey == "pk" ]]; then
+        while [ true ]; do
+            if [[ -z "$data" ]]; then
+            echo -e "\n\t\t\t${RED}You have to write PK${NC}\n"
             echo -e "\n\t\t\t$colName ($colType) = \c"
             read data
-
+                else
+                break
+            fi
+        if [[ $colType == "int" ]]; then
+            while ! [[ $data =~ ^[0-9]*$ ]]; do
+                
+                echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
+                echo -e "\n\t\t\t$colName ($colType) = \c"
+                read data
+            done
+        fi
         done
+        
     fi
-
 
     if [[ $colKey == "pk" ]]; then
         while [ true ]; do
@@ -68,20 +89,19 @@ for (( i = 2; i <= $colsNum; i++ )); do
             break
         fi
 
+        if [[ $colType == "int" ]]; then
+            while ! [[ $data =~ ^[0-9]*$ ]]; do
+                
+                echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
+                echo -e "\n\t\t\t$colName ($colType) = \c"
+                read data
+            done
+        fi
         done
-    fi
-
-
-    if [[ $colKey == "pk" && -z "$data" ]]; then
-    echo -e "\n\t\t\t${RED}You have to write PK${NC}\n"
-    echo -e "\n\t\t\t$colName ($colType) = \c"
-    read data
-        else
-        break
+        
         
     fi
-
-
+    break
     done
 
     #Set record

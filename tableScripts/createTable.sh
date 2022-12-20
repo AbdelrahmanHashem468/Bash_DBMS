@@ -49,7 +49,7 @@ while [ $count -le $coluNum ]
                 case $var in
                 int ) coluType="int";break;;
                 str ) coluType="str";break;;
-                * )    echo -e "\t\tWrong Choice";;
+                * ) echo -e "\t\tWrong Choice";;
                 esac
             done
             if [[ $pKey == "" ]];then

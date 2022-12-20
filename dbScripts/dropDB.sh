@@ -6,6 +6,17 @@ NC='\033[0m'
 echo -e "\n\t\t\tIf you want to Drop all table write *all \n"
 echo -e "\n\t\t\t=> Enter Datebase Name to Drop: \c \n"
 read delName
+source $HOME/DBMS/checkSyntax.sh $delName
+if [[ $? == 0 ]]; then
+	
+	echo -e "\n\n\n\n\n\n\n\n\n\n\n\n"
+	echo -e "\n\t\t==================================================="
+	echo -e "\n\t\t\t\t${RED}Invalid Input${NC} \U0001f620 \n"
+	echo -e "\t\t==================================================="
+	
+	echo -e "\n\t\t\t=> Enter Datebase Name to Drop: \c \n"
+	read delName
+fi
 if [[ -d $HOME/DBMS/DBS/"$delName"  ]]; then
 	rm -r $HOME/DBMS/DBS/"$delName"
 	echo -e "\n\n\n\n\n\n\n\n\n\n\n\n"
