@@ -1,5 +1,9 @@
 #!/bin/bash
-echo -e "\n\t\tEnter The Table Name : \c"
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+echo -e "\n\t\t\t=> Enter The Table Name : \c"
 read tableName
 
 
@@ -16,7 +20,7 @@ if [[ -f $tableName ]];then
     echo -e "\t\tThe Table Exist Choose another Name "
     $HOME/DBMS/tableScripts/tableMenu.sh 
 fi
-echo -e "\n\t\tEnter The Nunber of column: \c"
+echo -e "\n\t\t\t=> Enter The Nunber of column: \c"
 read coluNum
 
 count=1
@@ -27,7 +31,7 @@ confData=""
 while [ $count -le $coluNum ]
 
     do
-        echo -e "\n\t\tEnter The Name of column.$count: \c"
+        echo -e "\n\t\t\t=> Enter The Name of column.$count: \c"
         read coluName
 
         source $HOME/DBMS/checkSyntax.sh $coluName
@@ -39,7 +43,7 @@ while [ $count -le $coluNum ]
             echo -e "\t\t==================================================="
             continue
         fi
-            echo -e "\n\t\tEnter The Type of column.$coluName\n"
+            echo -e "\n\t\t\t=> Enter The Type of column.$coluName\n"
             select var in "int" "str"
             do
                 case $var in
@@ -82,10 +86,10 @@ echo -e $temp >> $tableName
 
 if [[ $? == 0 ]]
     then
-    echo "The Table Created Successfully"
+    echo "The Table Created ${GREEN}Successfully${NC}"
     $HOME/DBMS/tableScripts/tableMenu.sh 
 
 else
-    echo "Error in created The table"
+    echo "${RED}Error ${NC}in created The table"
     $HOME/DBMS/tableScripts/tableMenu.sh 
 fi

@@ -1,12 +1,15 @@
 #! /bin/bash
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
 
-echo -e  "\t\tEnter The Table Name you wanna delete from : \c"
+echo -e  "\n\t\t\t=> Enter The Table Name that you want to Delete from : \c"
 read tableName
 if ! [[ -f $tableName ]];then
-    echo -e "\t\tThe Table Not Exist "
+    echo -e "\n\t\t\tThe Table ${RED}Don't Exist${NC} \n"
     $HOME/DBMS/tableScripts/tableMenu.sh 
 fi
-echo -e  "\t\tEnter The column Name : \c"
+echo -e  "\t\t\t=> Enter The column Name : \c"
 read coluName
 numField=$(
 awk '
@@ -22,10 +25,10 @@ BEGIN{FS=":"}
     }' $tableName 2>> /dev/null)
 if [[ $numField == "" ]]
 then
-    echo -e "\t\tThe Column Not Exist "
+    echo -e "\n\t\t\tThe Column ${RED}Don't Exist${NC} \n"
     $HOME/DBMS/tableScripts/tableMenu.sh
 else
-    echo -e  "\t\tEnter The Value : \c"
+    echo -e  "\t\t\t=> Enter The Value : \c"
     read -r  value
     res=$(
         awk '
@@ -37,7 +40,7 @@ else
         echo $flag
     if [[ $res == "" ]]
         then
-        echo -e "\t\tThe Value Not Exist "
+        echo -e "\n\t\t\tThe Value ${RED}Don't Exist${NC}\n"
         $HOME/DBMS/tableScripts/tableMenu.sh
     else
         NR=$(
@@ -56,7 +59,7 @@ else
             while [[ $num != "" ]]
             do
                 sed -i ''$num'd' $tableName 2>> /dev/null
-                echo -e "\t\tRow '$num' Deleted Successfully"
+                echo -e "\n\t\t\tRow '$num' Deleted ${GREEN}Successfully${NC}\n"
                 ((count++))
                 num=$(echo "$NR" |cut -d" " '-f'$count''|rev )
             done
