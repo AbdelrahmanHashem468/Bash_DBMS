@@ -1,12 +1,16 @@
-#! /bin/bash -x
+#!/bin/bash -x
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
 
-echo -e  "\t\tEnter The Table Name you wanna Update : \c"
+echo -e  "\n\t\t\t=> Enter The Table Name you wanna Update : \c"
 read tableName
 if ! [[ -f $tableName ]];then
     echo -e "\t\tThe Table Not Exist "
     $HOME/DBMS/tableScripts/tableMenu.sh 
+    read tableName
 fi
-echo -e  "\t\tEnter The column Name : \c"
+echo -e  "\n\t\t\t=> Enter The column Name : \c"
 read coluName
 numField=$(
 awk '
@@ -22,10 +26,10 @@ BEGIN{FS=":"}
     }' $tableName 2>> /dev/null)
 if [[ $numField == "" ]]
 then
-    echo -e "\t\tThe Column Not Exist "
+    echo -e "\n\t\t\tThe Column Not Exist \n"
     $HOME/DBMS/tableScripts/tableMenu.sh
 else
-    echo -e  "\t\tEnter The Value : \c"
+    echo -e  "\n\t\t\t=> Enter The Value : \c"
     read -r  value
     res=$(
         awk '
@@ -37,13 +41,13 @@ else
         echo $flag
     if [[ $res == "" ]]
         then
-        echo -e "\t\tThe Value Not Exist "
+        echo -e "\n\t\t\tThe Value Not Exist\n"
         $HOME/DBMS/tableScripts/tableMenu.sh
     else
 
 
 
-        echo -e  "\t\tEnter The Set Column Name : \c"
+        echo -e  "\n\t\t\t=> Enter The Set Column Name : \c"
         read setColu
         setColNum=$(
         awk '
@@ -59,10 +63,10 @@ else
             }' $tableName 2>> /dev/null)
         if [[ $setColNum == "" ]]
         then
-            echo -e "\t\tThe Column Not Exist "
+            echo -e "\n\t\t\tThe Column Not Exist\n"
             $HOME/DBMS/tableScripts/tableMenu.sh
         else
-            echo -e  "\t\tEnter The Value : \c"
+            echo -e  "\n\t\t\t=> Enter The Value : \c"
             read -r  setValue
             NRN=$(
                 awk '
@@ -118,7 +122,7 @@ else
                             }
                     }' $tableName 2>> /dev/null)
                     sed -i ''$num's/'$oldValue'/'$setValue'/g' $tableName 2>> /dev/null
-                    echo -e "\t\tRow '$num' Deleted Successfully"
+                    echo -e "\n\t\t\tRow $num Updated ${GREEN} Successfully${NC}"
                     ((count++))
                     num=$(echo "$NR" |cut -d" " '-f'$count''|rev )
                 done
@@ -136,7 +140,7 @@ else
                             }
                     }' $tableName 2>> /dev/null)
                 sed -i ''$NR's/'$oldValue'/'$setValue'/g' $tableName 2>> /dev/null
-                echo -e "\t\tRow '$NR' Deleted Successfully"
+                echo -e "\n\t\t\tRow '$NR' Deleted Successfully\n"
             fi
             $HOME/DBMS/tableScripts/tableMenu.sh
         fi  

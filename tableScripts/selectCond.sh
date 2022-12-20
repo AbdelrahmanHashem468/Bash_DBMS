@@ -3,11 +3,7 @@ GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-<<<<<<< HEAD
-echo -e  "\t\tEnter The Table Name you wanna Select from : \c"
-=======
 echo -e  "\n\t\t\t=> Enter The Table Name You want to Select from : \c"
->>>>>>> 1bea4de845a0adeca23b947a28a183a0d0df4360
 read tableName
 if ! [[ -f $tableName ]];then
     echo -e "\n\t\t\tThe Table ${RED}Doens't Exist${NC} \n"
