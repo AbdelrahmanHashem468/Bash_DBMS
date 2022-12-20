@@ -22,14 +22,17 @@ if [[ -f $tableName ]];then
 fi
 echo -e "\n\t\t\t=> Enter The Nunber of column: \c"
 read coluNum
-
+if ! [[ $coluNum =~ ^[0-9]*$ ]] || [[ $coluNum == "" ]]; then
+    echo -e "\t\tYou Enter Invalid Data "
+    $HOME/DBMS/tableScripts/tableMenu.sh 
+fi
 count=1
 sep=":"
 rsep="\n"
 pKey=""
 confData=""
+array=()
 while [ $count -le $coluNum ]
-
     do
         echo -e "\n\t\t\t=> Enter The Name of column.$count: \c"
         read coluName
@@ -43,6 +46,19 @@ while [ $count -le $coluNum ]
             echo -e "\t\t==================================================="
             continue
         fi
+        for i in "${array[@]}"
+        do
+            if [[ $i == "'$coluName'" ]];then
+                echo -e "\n\n\n\n\n\n\n\n\n\n\n\n"
+                echo -e "\n\t\t==================================================="
+                echo -e "\n\t\t\tIt You Enter More Than Column whit The Same Name \U0001f620 \n"
+                echo -e "\t\t==================================================="
+                continue 2
+            fi
+        done
+
+        array+=("'$coluName'")
+
             echo -e "\n\t\t\t=> Enter The Type of column.$coluName\n"
             select var in "int" "str"
             do
