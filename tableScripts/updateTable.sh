@@ -64,11 +64,18 @@ else
         else
             echo -e  "\t\tEnter The Value : \c"
             read -r  setValue
+            NRN=$(
+                awk '
+                    BEGIN{FS=":"}
+                    {
+                        if ($'$numField'=="'$setColu'") print NR
+                    }
+                ' config_$tableName 2>> /dev/null)
             colsNum=`awk 'END{print NR}' config_$tableName`
             for (( i = 2; i <= $colsNum; i++ )); do
                 colLineNumber=`cut -d: -f3 config_$tableName | grep -n -w "^pk$" | cut -d: -f1`
                 colLineNumber=$(($colLineNumber-1))
-                colKey=$(awk 'BEGIN{FS=":"}{if(NR=='$i') print $3}' config_$tableName)
+                colKey=$(awk 'BEGIN{FS=":"}{if(NR=='$NRN') print $3}' config_$tableName)
                 if [[ $colKey == "pk" ]]; then
                     while [ true ]; do
                     checkpk=`cut -d: -f"$colLineNumber" $tableName | grep -c -w "$setValue"`  
@@ -76,13 +83,8 @@ else
                     if [[ $checkpk != 0 ]]; then
                         echo -e "\n\t\t\t${RED}Duplcated PK${NC}\n"
                         $HOME/DBMS/tableScripts/tableMenu.sh
-<<<<<<< HEAD
-                    else
-                    break;
-=======
                         else
                         break;
->>>>>>> 2792ef9a06dd6cf09ea91d6a3d08dbfc0fb7faa1
                     fi
 
                     done
