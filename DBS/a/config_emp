@@ -1,5 +1,0 @@
-
-name:str:
-salary:int:
-address:str:
-id:int:pk
