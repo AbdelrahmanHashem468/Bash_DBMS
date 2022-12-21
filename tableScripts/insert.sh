@@ -43,19 +43,11 @@ for (( i = 2; i <= $colsNum; i++ )); do
 
 
 
-    while [[ true ]]; do
-        if [[ $colType == "int" && $colKey = "pk" ]]; then
-            while [[ $data = 0* ]]; do
-                echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
-                echo -e "\n\t\t\t$colName ($colType) = \c"
-                read data
-            done
-        fi
-        break
-    done
+
+
 
     while [[ true ]]; do
-        if [[ $colType == "int" && $colKey != "pk" ]]; then
+        if [[ $colType == "int" ]]; then
             while ! [[ $data =~ ^[0-9]*$ ]]; do
                 echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
                 echo -e "\n\t\t\t$colName ($colType) = \c"
@@ -66,18 +58,17 @@ for (( i = 2; i <= $colsNum; i++ )); do
     done
 
 
-
     while [[ true ]]; do
 
 
     if [[ $colKey == "pk" ]]; then
         while [ true ]; do
-        if [[ -z "$data" || $data = 0* ]]; then
-            echo -e "\n\t\t\t${RED}You have to write PK${NC}\n"
+        if [[ -z "$data" ]]; then
+            echo -e "\n\t\t\t${RED}Invalde PK${NC}\n"
             echo -e "\n\t\t\t$colName ($colType) = \c"
             read data
-                else
-                break
+            else
+            break
         fi
         if [[ $colType == "int" ]]; then
             while ! [[ $data =~ ^[0-9]*$ ]]; do
@@ -96,7 +87,7 @@ for (( i = 2; i <= $colsNum; i++ )); do
         checkpk=`cut -d: -f"$colLineNumber" $tableName | grep -c -w "$data"`  
 
         if [[ $checkpk != 0 ]]; then
-            echo -e "\n\t\t\t${RED}Duplcated PK${NC}\n"
+            echo -e "\n\t\t\t${RED}Invalde PK${NC}\n"
             echo -e "\n\t\t\t$colName ($colType) = \c"
             read data
         else
