@@ -63,7 +63,7 @@ for (( i = 2; i <= $colsNum; i++ )); do
 
     if [[ $colKey == "pk" ]]; then
         while [ true ]; do
-        if [[ -z "$data" || $data = 0* ]]; then
+        if [[ -z "$data" ]]; then
             echo -e "\n\t\t\t${RED}You have to write PK${NC}\n"
             echo -e "\n\t\t\t$colName ($colType) = \c"
             read data
