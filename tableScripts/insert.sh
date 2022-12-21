@@ -41,8 +41,11 @@ for (( i = 2; i <= $colsNum; i++ )); do
     read data
 
 
+
+
+
     while [[ true ]]; do
-        if [[ $colType == "int" ]]; then
+        if [[ $colType == "int" && $colKey != "pk" ]]; then
             while ! [[ $data =~ ^[0-9]*$ ]]; do
                 
                 echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
@@ -52,7 +55,7 @@ for (( i = 2; i <= $colsNum; i++ )); do
         fi
         break
     done
-    
+
     while [[ true ]]; do
 
 
@@ -66,6 +69,13 @@ for (( i = 2; i <= $colsNum; i++ )); do
                 break
             fi
         if [[ $colType == "int" ]]; then
+
+            while [[ $data = 0* ]]; do
+                echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
+                echo -e "\n\t\t\t$colName ($colType) = \c"
+                read data
+            done
+
             while ! [[ $data =~ ^[0-9]*$ ]]; do
                 
                 echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
@@ -90,8 +100,13 @@ for (( i = 2; i <= $colsNum; i++ )); do
         fi
 
         if [[ $colType == "int" ]]; then
+            while [[ $data = 0* ]]; do
+                echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
+                echo -e "\n\t\t\t$colName ($colType) = \c"
+                read data
+            done
+
             while ! [[ $data =~ ^[0-9]*$ ]]; do
-                
                 echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
                 echo -e "\n\t\t\t$colName ($colType) = \c"
                 read data
@@ -103,6 +118,8 @@ for (( i = 2; i <= $colsNum; i++ )); do
     fi
     break
     done
+
+
 
     #Set record
     if [[ $i == $colsNum ]]; then
