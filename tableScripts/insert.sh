@@ -43,16 +43,7 @@ for (( i = 2; i <= $colsNum; i++ )); do
 
 
 
-    while [[ true ]]; do
-        if [[ $colType == "int" && $colKey = "pk" ]]; then
-            while [[ $data = 0* ]]; do
-                echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
-                echo -e "\n\t\t\t$colName ($colType) = \c"
-                read data
-            done
-        fi
-        break
-    done
+
 
     while [[ true ]]; do
         if [[ $colType == "int" && $colKey != "pk" ]]; then
