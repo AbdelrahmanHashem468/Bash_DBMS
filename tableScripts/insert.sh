@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -x
 RED='\033[0;31m'
 NC='\033[0m'
 echo -e "\n\t\t\tEnter Table Name: \c"
@@ -43,11 +43,9 @@ for (( i = 2; i <= $colsNum; i++ )); do
 
 
 
-
     while [[ true ]]; do
-        if [[ $colType == "int" && $colKey != "pk" ]]; then
-            while ! [[ $data =~ ^[0-9]*$ ]]; do
-                
+        if [[ $colType == "int" && $colKey = "pk" ]]; then
+            while [[ $data = 0* ]]; do
                 echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
                 echo -e "\n\t\t\t$colName ($colType) = \c"
                 read data
@@ -57,25 +55,31 @@ for (( i = 2; i <= $colsNum; i++ )); do
     done
 
     while [[ true ]]; do
+        if [[ $colType == "int" && $colKey != "pk" ]]; then
+            while ! [[ $data =~ ^[0-9]*$ ]]; do
+                echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
+                echo -e "\n\t\t\t$colName ($colType) = \c"
+                read data
+            done
+        fi
+        break
+    done
+
+
+
+    while [[ true ]]; do
 
 
     if [[ $colKey == "pk" ]]; then
         while [ true ]; do
-            if [[ -z "$data" ]]; then
+        if [[ -z "$data" || $data = 0* ]]; then
             echo -e "\n\t\t\t${RED}You have to write PK${NC}\n"
             echo -e "\n\t\t\t$colName ($colType) = \c"
             read data
                 else
                 break
-            fi
+        fi
         if [[ $colType == "int" ]]; then
-
-            while [[ $data = 0* ]]; do
-                echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
-                echo -e "\n\t\t\t$colName ($colType) = \c"
-                read data
-            done
-
             while ! [[ $data =~ ^[0-9]*$ ]]; do
                 
                 echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
@@ -100,12 +104,6 @@ for (( i = 2; i <= $colsNum; i++ )); do
         fi
 
         if [[ $colType == "int" ]]; then
-            while [[ $data = 0* ]]; do
-                echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
-                echo -e "\n\t\t\t$colName ($colType) = \c"
-                read data
-            done
-
             while ! [[ $data =~ ^[0-9]*$ ]]; do
                 echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
                 echo -e "\n\t\t\t$colName ($colType) = \c"
