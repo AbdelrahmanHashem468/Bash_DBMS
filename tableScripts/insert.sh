@@ -108,7 +108,10 @@ for (( i = 2; i <= $colsNum; i++ )); do
     break
     done
 
-
+if [[ $data == 0* ]] && [[ $colKey == "pk" ]] && [[ $colType == "int" ]];then
+    echo -e "\n\t\t\t${RED}invalid Data Type! Try Again${NC}\n"
+    $HOME/DBMS/tableScripts/insert.sh
+fi
 
     #Set record
     if [[ $i == $colsNum ]]; then
