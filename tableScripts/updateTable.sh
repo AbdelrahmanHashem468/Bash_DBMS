@@ -68,18 +68,26 @@ else
         else
             echo -e  "\n\t\t\t=> Enter The Value : \c"
             read -r  setValue
-            NRN=$(
+            NRN=`cut -d: -f1 config_$tableName | grep -n -w "$setColu" | cut -d: -f1`
+            NR=$(
                 awk '
                     BEGIN{FS=":"}
                     {
-                        if ($'$numField'=="'$setColu'") print NR
+                        if ($'$numField'=="'$value'") print NR
                     }
-                ' config_$tableName 2>> /dev/null)
+                ' $tableName 2>> /dev/null)
+            NR=${NR//$'\n'/" "}
+            field=$(echo $NR | awk -F" " '{print NF}')
+            colKey=$(awk 'BEGIN{FS=":"}{if(NR=='$NRN') print $3}' config_$tableName)
+            if [[ $field -gt 1 ]] && [[ $colKey == "pk" ]];then
+                        echo -e "\n\t\t\tYou can't update multiple row with the same value in PK\n"
+                        $HOME/DBMS/tableScripts/tableMenu.sh
+            fi
+
             colsNum=`awk 'END{print NR}' config_$tableName`
             for (( i = 2; i <= $colsNum; i++ )); do
                 colLineNumber=`cut -d: -f3 config_$tableName | grep -n -w "^pk$" | cut -d: -f1`
                 colLineNumber=$(($colLineNumber-1))
-                colKey=$(awk 'BEGIN{FS=":"}{if(NR=='$NRN') print $3}' config_$tableName)
                 if [[ $colKey == "pk" ]]; then
                     while [ true ]; do
                     checkpk=`cut -d: -f"$colLineNumber" $tableName | grep -c -w "$setValue"`  
@@ -94,15 +102,7 @@ else
                     done
                 fi
             done
-            NR=$(
-                awk '
-                    BEGIN{FS=":"}
-                    {
-                        if ($'$numField'=="'$value'") print NR
-                    }
-                ' $tableName 2>> /dev/null)
-            NR=${NR//$'\n'/" "}
-            field=$(echo $NR | awk -F" " '{print NF}')
+
             if [[ $field != 1 ]];then
                 NR=$(echo "$NR" | rev |cat)
                 count=1
